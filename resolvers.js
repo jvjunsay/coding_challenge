@@ -5,11 +5,7 @@ export default {
     Property: {
         user: (parent, args, context, info) => parent.getUser(),
       },
-    Query: {     
-      properties: (parent, args, { db }, info) => db.property.findAll(),
-      users: (parent, args, { db }, info) => db.user.findAll(),
-      property: (parent, { id }, { db }, info) => db.property.findById(id),
-      user: (parent, { id }, { db }, info) => db.user.findById(id), 
+    Query: {  
       search: async (parent, args, { db, Op }, info) => {
         
           const results = await db.property.findAll({
