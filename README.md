@@ -1,5 +1,15 @@
 # Coding Challenge
 
+To fetch dependencies for the server run this on the root folder
+```
+npm install
+```
+
+To fetch dependencies for the client run this on the /client folder
+```
+npm install
+```
+
 To run the server and the client
 ```
 npm run start
