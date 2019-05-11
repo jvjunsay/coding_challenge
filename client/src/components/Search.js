@@ -16,6 +16,7 @@ class Search extends Component {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     
     this.state = {
       searchText: '',
@@ -25,11 +26,11 @@ class Search extends Component {
     };
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({searchText: event.target.value});
   }
 
-  async handleSearch() {
+  handleSearch = () => {
     this.setState({isLoading:true});
     this.props.client.query({query, variables: {filter: this.state.searchText}}).then((data)=>{
       if(data.data.search.length<1) {
@@ -39,10 +40,16 @@ class Search extends Component {
     }).finally(()=>{
       this.setState({isLoading:false});
     });
-    
   }
-  render() {
 
+
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      this.handleSearch();
+    }
+  }
+  
+  render = () => {
     let {isLoading, searchText, searchResults} = this.state;
 
     let results = searchResults.map((item, key) =>
@@ -59,17 +66,16 @@ class Search extends Component {
     return (
       <div className="bs-component">
         <h1 className="display-4 my-3">Code Challenge</h1>
-        <form>
-          <label>Search For Properties:</label>
-          <div className="input-group">          
-            <input type="text" className="form-control" onChange={this.handleChange} placeholder="Search" value={searchText}/>
-            <span className="input-group-btn">
-              <button className="btn btn-primary"   type="button" disabled={isLoading} onClick={!isLoading ? this.handleSearch : null} >
-                {isLoading ? 'Loading…' : 'Search'}
-              </button>
-            </span>         
-          </div>
-        </form>
+        <label>Search For Properties:</label>
+        <div className="input-group">          
+          <input type="text" className="form-control" onKeyPress={this.handleKeyPress} onChange={this.handleChange} placeholder="Search" value={searchText}/>
+          <span className="input-group-btn">
+            <button className="btn btn-primary"   type="button" disabled={isLoading} onClick={!isLoading ? this.handleSearch : null} >
+              {isLoading ? 'Loading…' : 'Search'}
+            </button>
+          </span>         
+        </div>
+        
         <br />
         <br />
         <div>
@@ -89,6 +95,7 @@ class Search extends Component {
       </div>
     )
   }
+
 }
 
 export default Search

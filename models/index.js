@@ -1,19 +1,10 @@
 import Sequelize from 'sequelize';
+import config from '../config';
 const Op = Sequelize.Op;
 
-// const operatorsAliases = {
-//     eq: Op.eq,
-//     ne: Op.ne,
-//     gte: Op.gte,
-//     gt: Op.gt,
-//     lte: Op.lte,
-//     lt: Op.lt,
-//     like: Op.like
-// };
-
-const sequelize = new Sequelize('zmalyoyk', 'zmalyoyk', 'p6DeMqbkUzbQbI0TJwAPbtmaGG-VxZRQ', {
-    host: 'john.db.elephantsql.com',
-    dialect: 'postgres'
+const sequelize = new Sequelize(config.dbname, config.username, config.password, {
+    host: config.hostname,
+    dialect: config.dialect
 });
 
 const db = {    
