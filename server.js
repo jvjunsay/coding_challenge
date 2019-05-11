@@ -43,6 +43,6 @@ db.sequelize.sync({force:true}).then(() => {
   
   const PORT = process.env.PORT || 4000
   app.listen(PORT, () =>
-    console.log(`Server ready : http://localhost:${PORT}/${server.graphqlPath}`)
+    console.log(`GraphQL API Ready`)
   );
 });
