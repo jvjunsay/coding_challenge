@@ -18,13 +18,10 @@ const app = express();
 
 //allow cross-origin
 app.use(cors());
-
 server.applyMiddleware({ app });
-app.use(express.static("public"));
 
 db.sequelize.sync({force:true}).then(() => {
   // populate user table with dummy data
-  /**********  Uncomment to populate fake data  ************/
   db.user.bulkCreate(
     times(3, () => ({
       firstName: faker.name.firstName(),
