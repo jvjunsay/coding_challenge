@@ -9,7 +9,7 @@
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
-  "author": "",
+  "author": "JV Junsay",
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "^0.3.1",
